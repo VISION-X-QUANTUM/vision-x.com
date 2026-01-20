@@ -1,0 +1,3458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فيجن اكس جروب | أخبار العصر الذكي</title>
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="فيجن اكس جروب - وجهتك الأولى لأحدث أخبار التكنولوجيا والذكاء الاصطناعي. تغطية لحظية وموثوقة للأحداث التقنية والمالية.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* المتغيرات الأساسية */
+        :root {
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent-color: #06b6d4;
+            --accent-hover: #0891b2;
+            --dark-bg: #0f172a;
+            --darker-bg: #020617;
+            --card-bg: #1e293b;
+            --card-hover: #243347;
+            --text-main: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            --gradient-hover: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.16);
+            --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+            --shadow-xl: 0 20px 40px -5px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 6px;
+            --radius: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        /* القائمة المنقولة للجوال */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 320px;
+            max-width: 85%;
+            height: 100%;
+            background: var(--card-bg);
+            z-index: 9999;
+            padding: 24px;
+            transition: var(--transition-slow);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-close {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+        }
+
+        .mobile-menu nav ul {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+        }
+
+        .mobile-menu nav a {
+            display: block;
+            padding: 14px 16px;
+            font-size: 1rem;
+        }
+
+        .mobile-menu-actions {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mobile-menu-actions .btn {
+            width: 100%;
+        }
+
+        /* رأس الصفحة */
+        header {
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: rgba(15, 23, 42, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--gradient);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 800;
+            -webkit-text-fill-color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            padding: 10px 16px;
+            border-radius: var(--radius);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 20px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            flex-shrink: 0;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .pulse::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-color: var(--success);
+            border-radius: 50%;
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: var(--gradient);
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-color);
+            color: var(--text-main);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: var(--text-main);
+            font-size: 1.4rem;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* شريط الأخبار العاجلة */
+        .breaking-news {
+            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            height: 44px;
+            margin-top: 72px;
+        }
+
+        .breaking-label {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 0 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            z-index: 10;
+            letter-spacing: 0.5px;
+            box-shadow: 4px 0 20px rgba(239, 68, 68, 0.3);
+        }
+
+        .ticker-wrap {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 50px;
+            animation: ticker 40s linear infinite;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .ticker:hover {
+            animation-play-state: paused;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ticker-item::before {
+            content: '•';
+            color: var(--accent-color);
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* إشعار الأخبار الجديدة */
+        .ticker-notification {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 12px 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            animation: slideDown 0.3s ease;
+        }
+
+        .ticker-notification.active {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ticker-notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ticker-notification i {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            animation: bellRing 1s ease infinite;
+        }
+
+        @keyframes bellRing {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .ticker-notification span {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .ticker-notification .new-count {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .ticker-notification-btn {
+            background: var(--accent-color);
+            color: white;
+            padding: 6px 16px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .ticker-notification-btn:hover {
+            background: var(--accent-hover);
+            transform: scale(1.05);
+        }
+
+        .ticker-notification-close {
+            position: absolute;
+            left: 20px;
+            color: var(--text-muted);
+            padding: 4px;
+            transition: var(--transition);
+        }
+
+        .ticker-notification-close:hover {
+            color: var(--text-main);
+        }
+
+        /* عداد التحديث */
+        .update-countdown {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .countdown-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .countdown-text {
+            flex: 1;
+        }
+
+        .countdown-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .countdown-time {
+            font-size: 1.4rem;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            color: var(--text-main);
+        }
+
+        .countdown-progress {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .countdown-progress-bar {
+            height: 100%;
+            background: var(--gradient);
+            transition: width 1s linear;
+            border-radius: 3px;
+        }
+
+        /* قسم الهيرو */
+        .hero {
+            position: relative;
+            min-height: 520px;
+            display: flex;
+            align-items: flex-end;
+            padding: 60px 0 80px;
+            margin-bottom: 50px;
+            overflow: hidden;
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+        }
+
+        .hero-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            filter: brightness(0.6) contrast(1.1);
+            transition: transform var(--transition-slow);
+        }
+
+        .hero:hover .hero-bg {
+            transform: scale(1.02);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(to top, var(--dark-bg) 0%, transparent 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 780px;
+        }
+
+        .ai-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.25;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            max-width: 650px;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .author-info span {
+            display: block;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .author-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-item i {
+            color: var(--accent-color);
+        }
+
+        /* الأقسام */
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .section-title-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--gradient);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .section-title h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .section-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .section-link:hover {
+            background: rgba(6, 182, 212, 0.2);
+            gap: 12px;
+        }
+
+        /* شبكة الأخبار */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .news-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .news-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(6, 182, 212, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(6, 182, 212, 0);
+            }
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+
+        .news-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .news-card:hover .card-image-overlay {
+            opacity: 1;
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #0891b2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+            z-index: 2;
+        }
+
+        .card-actions-overlay {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: var(--transition);
+        }
+
+        .news-card:hover .card-actions-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .overlay-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .overlay-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .overlay-btn.save-btn.saved {
+            background: var(--warning);
+            color: white;
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+
+        .category {
+            color: var(--accent-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .category i {
+            font-size: 0.75rem;
+        }
+
+        .card-date {
+            color: var(--text-muted);
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-card:hover .card-title {
+            color: var(--accent-color);
+        }
+
+        .card-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+
+        .ai-score {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 5px 12px;
+            border-radius: 50px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .card-share {
+            display: flex;
+            gap: 8px;
+        }
+
+        .share-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .share-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent-color);
+        }
+
+        /* قسم من نحن */
+        .about-section {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 50px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .about-feature:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(5px);
+        }
+
+        .about-feature-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(6, 182, 212, 0.15);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .about-feature span {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .about-ceo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-radius: var(--radius-xl);
+            text-align: center;
+        }
+
+        .ceo-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 800;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .ceo-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .ceo-position {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .ceo-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .ceo-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .ceo-social a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* قسم تواصل معنا */
+        .contact-section {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 50px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(6, 182, 212, 0.15);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .contact-value {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .contact-value a {
+            color: var(--accent-color);
+        }
+
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .contact-social a {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-social a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .contact-social a.whatsapp:hover {
+            background: #25D366;
+            border-color: #25D366;
+        }
+
+        .contact-social a.instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border-color: transparent;
+        }
+
+        .contact-social a.linkedin:hover {
+            background: #0077B5;
+            border-color: #0077B5;
+        }
+
+        .contact-form {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+        }
+
+        .contact-form h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+        }
+
+        /* قسم المميزات */
+        .featured-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .featured-main {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .featured-main-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.5);
+            transition: var(--transition-slow);
+        }
+
+        .featured-main:hover .featured-main-bg {
+            transform: scale(1.03);
+        }
+
+        .featured-main-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.3) 50%, transparent 100%);
+        }
+
+        .featured-main-content {
+            position: relative;
+            z-index: 1;
+            padding: 32px;
+            width: 100%;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 16px;
+        }
+
+        .featured-main h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .featured-main p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .featured-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .featured-sidebar-item {
+            display: flex;
+            gap: 14px;
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .featured-sidebar-item:hover {
+            border-color: var(--primary-color);
+            transform: translateX(4px);
+        }
+
+        .featured-sidebar-img {
+            width: 100px;
+            height: 75px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .featured-sidebar-content h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .featured-sidebar-content span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* التغذية الحية */
+        .live-feed-section {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            height: fit-content;
+        }
+
+        .live-feed-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .live-feed-header h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .live-feed-header .pulse {
+            width: 10px;
+            height: 10px;
+        }
+
+        .feed-item {
+            display: flex;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .feed-item:hover {
+            padding-right: 8px;
+        }
+
+        .feed-item:last-child {
+            border-bottom: none;
+        }
+
+        .time-badge {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            height: fit-content;
+            white-space: nowrap;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .feed-content h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .feed-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .feed-source {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            margin-top: 6px;
+        }
+
+        /* نافذة المشاركة */
+        .share-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 20000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .share-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .share-modal-content {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            width: 90%;
+            max-width: 400px;
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+
+        .share-modal.active .share-modal-content {
+            transform: scale(1);
+        }
+
+        .share-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .share-modal-header h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .share-modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .share-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-main);
+        }
+
+        .share-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .share-buttons a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 8px;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .share-buttons a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .share-buttons a i {
+            font-size: 1.4rem;
+        }
+
+        .share-buttons a span {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .share-buttons a.twitter:hover { color: #1DA1F2; }
+        .share-buttons a.facebook:hover { color: #4267B2; }
+        .share-buttons a.linkedin:hover { color: #0077B5; }
+        .share-buttons a.whatsapp:hover { color: #25D366; }
+
+        .share-link-copy {
+            display: flex;
+            gap: 8px;
+        }
+
+        .share-link-copy input {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            font-size: 0.85rem;
+        }
+
+        .share-link-copy input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .share-link-copy input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .share-link-copy button {
+            padding: 12px 20px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .share-link-copy button:hover {
+            background: var(--primary-hover);
+        }
+
+        .share-link-copy button.copied {
+            background: var(--success);
+        }
+
+        /* إشعار التحديث */
+        .update-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: var(--shadow-xl);
+            z-index: 10001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .update-notification.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .update-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(6, 182, 212, 0.15);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .update-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .update-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .update-status {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* التذييل */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 70px 0 30px;
+            margin-top: 80px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a::before {
+            content: '';
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--text-main);
+            padding-right: 4px;
+        }
+
+        .footer-col ul li a:hover::before {
+            width: 8px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .newsletter-form button {
+            padding: 12px 20px;
+            background: var(--gradient);
+            color: white;
+            border-radius: var(--radius);
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+        }
+
+        .footer-contact-info {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-contact-item i {
+            color: var(--accent-color);
+            width: 20px;
+        }
+
+        .footer-contact-item a {
+            color: var(--text-muted);
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .copyright-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .copyright-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .copyright-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* حالة التحميل */
+        .img-loading {
+            background: linear-gradient(90deg, var(--card-bg) 25%, rgba(255,255,255,0.05) 50%, var(--card-bg) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* التجاوب */
+        @media (max-width: 1024px) {
+            .featured-section {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+            nav {
+                display: none;
+            }
+            .header-content {
+                height: 64px;
+            }
+            .hero {
+                min-height: 450px;
+                padding: 40px 0 50px;
+            }
+            .breaking-news {
+                margin-top: 64px;
+                height: 40px;
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .featured-main {
+                min-height: 350px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .calendar-grid {
+                gap: 4px;
+            }
+            .calendar-day-header {
+                font-size: 0.7rem;
+                padding: 4px;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .update-countdown {
+                flex-wrap: wrap;
+            }
+            .update-notification {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+            }
+            .ticker-notification {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            .ticker-notification-close {
+                position: static;
+                margin-right: auto;
+            }
+            .about-section,
+            .contact-section {
+                padding: 30px 20px;
+            }
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            .about-text h3,
+            .contact-info h3 {
+                font-size: 1.5rem;
+            }
+            .contact-form {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- إشعار الأخبار الجديدة -->
+    <div class="ticker-notification" id="tickerNotification">
+        <div class="ticker-notification-content">
+            <i class="fas fa-bell"></i>
+            <span>تم إضافة <span class="new-count">0</span> خبراً جديداً</span>
+            <button class="ticker-notification-btn" id="viewNewNews">عرض الآن</button>
+        </div>
+        <button class="ticker-notification-close" id="closeNotification">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- القائمة المنقولة للجوال -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <div class="logo-icon">V</div>
+                <span>فيجن اكس جروب</span>
+            </div>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">الرئيسية</a></li>
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+                <li><a href="#">أخبار التكنولوجيا</a></li>
+                <li><a href="#">الأسواق المالية</a></li>
+                <li><a href="#">تحليلات الذكاء الاصطناعي</a></li>
+                <li><a href="#">فيديو</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-actions">
+            <button class="btn">
+                <i class="fas fa-bell"></i>
+                اشترك في النشرة
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-user"></i>
+                تسجيل الدخول
+            </button>
+        </div>
+    </div>
+
+    <!-- رأس الصفحة -->
+    <header id="mainHeader">
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">V</div>
+                <span>فيجن اكس جروب</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">الرئيسية</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="#">أخبار التكنولوجيا</a></li>
+                    <li><a href="#">الأسواق المالية</a></li>
+                    <li><a href="#">تحليلات الذكاء الاصطناعي</a></li>
+                    <li><a href="#">فيديو</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="live-indicator">
+                    <span class="pulse"></span>
+                    مباشر
+                </div>
+                <button class="btn">
+                    <i class="fas fa-bell"></i>
+                    اشترك الآن
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط الأخبار العاجلة -->
+    <div class="breaking-news">
+        <div class="breaking-label">عاجل</div>
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <span class="ticker-item">فيجن اكس جروب يطلق خوارزمية جديدة للتنبؤ بالأسواق المالية بدقة متناهية</span>
+                <span class="ticker-item">تقرير الذكاء الاصطناعي: ارتفاع الاعتماد على الروبوتات في القطاع الصناعي بنسبة 40%</span>
+                <span class="ticker-item">تحديث أمني عاجل لجميع المنصات الرقمية عالمياً</span>
+                <span class="ticker-item">أسعار النفط تشهد استقراراً نسبياً بعد البيانات الجديدة</span>
+                <span class="ticker-item">مؤتمر فيجن اكس السنوي للتقنية 15 يناير القادم</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container">
+        
+        <!-- قسم الهيرو -->
+        <section class="hero">
+            <div class="hero-bg-container">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=800&fit=crop" alt="خلفية الذكاء الاصطناعي" class="hero-bg" loading="lazy">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <span class="ai-tag">
+                    <i class="fas fa-robot"></i>
+                    تحليل الذكاء الاصطناعي
+                </span>
+                <h1>مستقبل الأخبار الرقمية: كيف يُعيد فيجن اكس جروب تشكيل الوعي الجمعي</h1>
+                <p>بفضل تقنيات المعالجة اللغوية المتقدمة، نقدم تغطية لحظية للأحداث بدقة تصل إلى 99%، مما يجعل من فيجن اكس جروب المنصة الأسرع عالمياً في نقل الأخبار التقنية والمالية.</p>
+                <div class="hero-meta">
+                    <div class="hero-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="المؤلف" class="author-avatar" loading="lazy">
+                        <div class="author-info">
+                            <span class="author-name">أحمد محمد</span>
+                            <span class="author-date">منذ 15 دقيقة</span>
+                        </div>
+                    </div>
+                    <div class="hero-stats">
+                        <span class="stat-item">
+                            <i class="far fa-eye"></i>
+                            2.4K قراءة
+                        </span>
+                        <span class="stat-item">
+                            <i class="far fa-comment"></i>
+                            48 تعليق
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم المقالات المميزة -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-title-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h2>المقالات المميزة</h2>
+                </div>
+                <a href="#" class="section-link">
+                    عرض الكل
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+            
+            <div class="featured-section">
+                <article class="featured-main">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop" alt="الروبوتات" class="featured-main-bg" loading="lazy">
+                    <div class="featured-main-overlay"></div>
+                    <div class="featured-main-content">
+                        <span class="featured-badge">
+                            <i class="fas fa-crown"></i>
+                            مقال مميز
+                        </span>
+                        <h3>الذكاء الاصطناعي التوليدي: ثورة في عالم المحتوى الرقمي</h3>
+                        <p>استكشاف عميق لتقنيات GPT وتطبيقاتها المتعددة في مختلف القطاعات</p>
+                        <button class="btn">اقرأ المزيد</button>
+                    </div>
+                </article>
+                
+                <div class="featured-sidebar">
+                    <article class="featured-sidebar-item">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&h=150&fit=crop" alt="الحوسبة الكمية" class="featured-sidebar-img" loading="lazy">
+                        <div class="featured-sidebar-content">
+                            <h4>الحوسبة الكمية: الخطوة التالية في تطور التكنولوجيا</h4>
+                            <span>منذ ساعتين</span>
+                        </div>
+                    </article>
+                    <article class="featured-sidebar-item">
+                        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=200&h=150&fit=crop" alt="الأمن السيبراني" class="featured-sidebar-img" loading="lazy">
+                        <div class="featured-sidebar-content">
+                            <h4>أفضل ممارسات الأمن السيبراني لعام 2025</h4>
+                            <span>منذ 4 ساعات</span>
+                        </div>
+                    </article>
+                    <article class="featured-sidebar-item">
+                        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=200&h=150&fit=crop" alt="الفضاء" class="featured-sidebar-img" loading="lazy">
+                        <div class="featured-sidebar-content">
+                            <h4>مهمة المريخ القادمة: ما الذي نعرفه حتى الآن</h4>
+                            <span>منذ 6 ساعات</span>
+                        </div>
+                    </article>
+                    <article class="featured-sidebar-item">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=200&h=150&fit=crop" alt="العمل عن بعد" class="featured-sidebar-img" loading="lazy">
+                        <div class="featured-sidebar-content">
+                            <h4>مستقبل العمل: هل أصبح المكتب شيئاً من الماضي؟</h4>
+                            <span>منذ 8 ساعات</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 30px; margin-bottom: 60px;">
+            <div class="main-content">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="section-title-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h2>آخر التحديثات الساعية</h2>
+                    </div>
+                    <a href="#" class="section-link">
+                        عرض الكل
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <!-- عداد التحديث -->
+                <div class="update-countdown" id="updateCountdown">
+                    <div class="countdown-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="countdown-text">
+                        <span class="countdown-label">التحديث القادم للأخبار</span>
+                        <span class="countdown-time" id="countdownTime">02:00:00</span>
+                    </div>
+                    <div class="countdown-progress">
+                        <div class="countdown-progress-bar" id="countdownProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- شبكة الأخبار -->
+                <div class="news-grid" id="newsGrid">
+                    <article class="news-card" data-article="1">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1676299081847-824916de030a?w=400&h=250&fit=crop" alt="الروبوتات الدقيقة" class="card-img" loading="lazy" style="opacity: 1;">
+                            <div class="card-image-overlay"></div>
+                            <div class="card-actions-overlay">
+                                <button class="overlay-btn bookmark-btn" data-article="1">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                                <button class="overlay-btn share-trigger" data-article="1">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="category">
+                                    <i class="fas fa-robot"></i>
+                                    تكنولوجيا
+                                </span>
+                                <span class="card-date">منذ 15 دقيقة</span>
+                            </div>
+                            <h3 class="card-title">الطفرات في مجال الروبوتات الدقيقة</h3>
+                            <p class="card-excerpt">خوارزميات التعلم العميق تكتشف طرقاً جديدة لتحسين دقة الروبوتات في العمليات الجراحية.</p>
+                            <div class="card-footer">
+                                <div class="ai-score">
+                                    <span>🧠</span> مصداقية AI: 98%
+                                </div>
+                                <div class="card-share">
+                                    <button class="share-btn twitter-share" data-article="1">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="share-btn facebook-share" data-article="1">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-card" data-article="2">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop" alt="البورصة" class="card-img" loading="lazy" style="opacity: 1;">
+                            <div class="card-image-overlay"></div>
+                            <div class="card-actions-overlay">
+                                <button class="overlay-btn bookmark-btn" data-article="2">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                                <button class="overlay-btn share-trigger" data-article="2">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="category">
+                                    <i class="fas fa-chart-line"></i>
+                                    اقتصاد
+                                </span>
+                                <span class="card-date">منذ 32 دقيقة</span>
+                            </div>
+                            <h3 class="card-title">ارتفاع مؤشرات البورصة الآسيوية</h3>
+                            <p class="card-excerpt">تحليل السوق يظهر اتجاهاً صعودياً قوياً مدفوعاً بشركات التكنولوجيا الكبرى.</p>
+                            <div class="card-footer">
+                                <div class="ai-score">
+                                    <span>📊</span> تنبؤ النمو: +2.4%
+                                </div>
+                                <div class="card-share">
+                                    <button class="share-btn twitter-share" data-article="2">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="share-btn facebook-share" data-article="2">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-card" data-article="3">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=250&fit=crop" alt="الأمن السيبراني" class="card-img" loading="lazy" style="opacity: 1;">
+                            <div class="card-image-overlay"></div>
+                            <div class="card-actions-overlay">
+                                <button class="overlay-btn bookmark-btn" data-article="3">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                                <button class="overlay-btn share-trigger" data-article="3">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="category">
+                                    <i class="fas fa-shield-alt"></i>
+                                    أمن سيبراني
+                                </span>
+                                <span class="card-date">منذ 45 دقيقة</span>
+                            </div>
+                            <h3 class="card-title">تحديث جديد للدفاع ضد الهجمات الإلكترونية</h3>
+                            <p class="card-excerpt">فريق الأبحاث في فيشن اكس يطور جدار ناري ذكي يتكيف مع التهديدات في الوقت الفعلي.</p>
+                            <div class="card-footer">
+                                <div class="ai-score">
+                                    <span>🛡️</span> مستوى الخطر: منخفض
+                                </div>
+                                <div class="card-share">
+                                    <button class="share-btn twitter-share" data-article="3">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="share-btn facebook-share" data-article="3">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-card" data-article="4">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&h=250&fit=crop" alt="الفضاء" class="card-img" loading="lazy" style="opacity: 1;">
+                            <div class="card-image-overlay"></div>
+                            <div class="card-actions-overlay">
+                                <button class="overlay-btn bookmark-btn" data-article="4">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                                <button class="overlay-btn share-trigger" data-article="4">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="category">
+                                    <i class="fas fa-satellite"></i>
+                                    فضاء
+                                </span>
+                                <span class="card-date">منذ 1 ساعة</span>
+                            </div>
+                            <h3 class="card-title">اكتشاف كوكب جديد قابل للحياة</h3>
+                            <p class="card-excerpt">تلسكوب James Webb يرسل بيانات مثيرة تؤكد وجود مؤشرات حياة في نظام شمسي قريب.</p>
+                            <div class="card-footer">
+                                <div class="ai-score">
+                                    <span>🔭</span> دقة البيانات: عالية
+                                </div>
+                                <div class="card-share">
+                                    <button class="share-btn twitter-share" data-article="4">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="share-btn facebook-share" data-article="4">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-card" data-article="5">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=400&h=250&fit=crop" alt="السيارات الكهربائية" class="card-img" loading="lazy" style="opacity: 1;">
+                            <div class="card-image-overlay"></div>
+                            <div class="card-actions-overlay">
+                                <button class="overlay-btn bookmark-btn" data-article="5">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                                <button class="overlay-btn share-trigger" data-article="5">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="category">
+                                    <i class="fas fa-car-battery"></i>
+                                    سيارات كهربائية
+                                </span>
+                                <span class="card-date">منذ 1.5 ساعة</span>
+                            </div>
+                            <h3 class="card-title">بطاريات الشحن الفوري أصبحت قريبة</h3>
+                            <p class="card-excerpt">ابتكار جديد في مواد البطاريات قد يقلل وقت الشحن إلى 5 دقائق فقط.</p>
+                            <div class="card-footer">
+                                <div class="ai-score">
+                                    <span>⚡</span> تقنية متطورة
+                                </div>
+                                <div class="card-share">
+                                    <button class="share-btn twitter-share" data-article="5">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="share-btn facebook-share" data-article="5">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-card" data-article="6">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=250&fit=crop" alt="الهواتف الذكية" class="card-img" loading="lazy" style="opacity: 1;">
+                            <div class="card-image-overlay"></div>
+                            <div class="card-actions-overlay">
+                                <button class="overlay-btn bookmark-btn" data-article="6">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                                <button class="overlay-btn share-trigger" data-article="6">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="category">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    أجهزة ذكية
+                                </span>
+                                <span class="card-date">منذ 2 ساعة</span>
+                            </div>
+                            <h3 class="card-title">مفاجأة: تسريبات جديدة حول هاتف فيجن اكس القابل للطي</h3>
+                            <p class="card-excerpt">مواصفات مذهلة وشاشة من الجيل الجديد في التسريبات الأخيرة.</p>
+                            <div class="card-footer">
+                                <div class="ai-score">
+                                    <span>📱</span> التحقق: 85%
+                                </div>
+                                <div class="card-share">
+                                    <button class="share-btn twitter-share" data-article="6">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="share-btn facebook-share" data-article="6">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- التغذية الحية -->
+            <aside>
+                <div class="live-feed-section">
+                    <div class="live-feed-header">
+                        <span class="pulse"></span>
+                        <h3>التغذية الحية</h3>
+                    </div>
+                    
+                    <div class="feed-item">
+                        <span class="time-badge">الآن</span>
+                        <div class="feed-content">
+                            <h4>مؤتمر فيجن اكس يبدأ خلال دقائق</h4>
+                            <p>كبار المسؤولين التنفيذيين على استعداد لإعلانات كبرى</p>
+                            <span class="feed-source">
+                                <i class="fas fa-satellite-dish"></i>
+                                مباشر من لاس فيغاس
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="feed-item">
+                        <span class="time-badge">2 د</span>
+                        <div class="feed-content">
+                            <h4>سهم NVDA يرتفع بنسبة 5%</h4>
+                            <p>بعد الإعلان عن شراكة استراتيجية جديدة</p>
+                            <span class="feed-source">
+                                <i class="fas fa-chart-line"></i>
+                                سوق المال
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="feed-item">
+                        <span class="time-badge">5 د</span>
+                        <div class="feed-content">
+                            <h4>تحديث Windows 24H2 متاح الآن</h4>
+                            <p>ميزات جديدة للذكاء الاصطناعي مدمجة</p>
+                            <span class="feed-source">
+                                <i class="fab fa-windows"></i>
+                                مايكروسوفت
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="feed-item">
+                        <span class="time-badge">12 د</span>
+                        <div class="feed-content">
+                            <h4>مركبة SpaceX تهبط بنجاح</h4>
+                            <p>المهمة SPX-23 تكتمل بسلام</p>
+                            <span class="feed-source">
+                                <i class="fab fa-space-shuttle"></i>
+                                سبيس إكس
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="feed-item">
+                        <span class="time-badge">18 د</span>
+                        <div class="feed-content">
+                            <h4>ChatGPT يحصل على ذاكرة</h4>
+                            <p>تحديث كبير للمحادثة الشخصية</p>
+                            <span class="feed-source">
+                                <i class="fas fa-brain"></i>
+                                OpenAI
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="feed-item">
+                        <span class="time-badge">25 د</span>
+                        <div class="feed-content">
+                            <h4>هاتف Pixel 9 Pro XL يتفوق في الاختبارات</h4>
+                            <p>أفضل كاميرا في الهاتف الذكي حتى الآن</p>
+                            <span class="feed-source">
+                                <i class="fab fa-google"></i>
+                                جوجل
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- نافذة المشاركة -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <div class="share-modal-header">
+                <h3>مشاركة الخبر</h3>
+                <button class="share-modal-close" id="shareModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="share-buttons">
+                <a href="#" class="twitter" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                    <span>تويتر</span>
+                </a>
+                <a href="#" class="facebook" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>فيسبوك</span>
+                </a>
+                <a href="#" class="linkedin" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                    <span>لينكدإن</span>
+                </a>
+                <a href="#" class="whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>واتساب</span>
+                </a>
+            </div>
+            <div class="share-link-copy">
+                <input type="text" id="shareLinkInput" readonly>
+                <button id="copyShareLink">نسخ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- إشعار التحديث -->
+    <div class="update-notification" id="updateNotification">
+        <div class="update-icon">
+            <i class="fas fa-sync-alt fa-spin"></i>
+        </div>
+        <div class="update-text">
+            <span class="update-title">جاري تحديث الأخبار</span>
+            <span class="update-status">جلب آخر التحديثات...</span>
+        </div>
+    </div>
+
+    <!-- قسم من نحن -->
+    <section class="section" id="about">
+        <div class="section-header">
+            <div class="section-title">
+                <div class="section-title-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>من نحن</h2>
+            </div>
+        </div>
+        
+        <div class="about-section">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>فيجن اكس جروب</h3>
+                    <p>نحن شركة رائدة في مجال التكنولوجيا والإعلام الرقمي، متخصصون في تقديم أحدث الأخبار والتحليلات التقنية والذكاء الاصطناعي. نؤمن بأن الوصول إلى المعلومات الدقيقة والسريعة هو حق للجميع، ولذلك نعمل على مدار الساعة لتقديم محتوى متميز يواكب التطورات المتسارعة في عالم التقنية.</p>
+                    <p>تتميز فيجن اكس جروب بفريق عمل متميز من الخبراء والمتخصصين في مجالات التكنولوجيا والذكاء الاصطناعي والأسواق المالية، مما يضمن تقديم محتوى موثوق ومتميز يلبي احتياجات قرائنا في مختلف أنحاء العالم.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <span>أسرع في التحديث</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <span>دقة عالية في التحليل</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span>مصداقية موثقة</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <span>تغطية عالمية</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-ceo">
+                    <div class="ceo-avatar">ع خ</div>
+                    <h4 class="ceo-name">عبد الرحمن خالد</h4>
+                    <p class="ceo-position">المؤسس والرئيس التنفيذي</p>
+                    <div class="ceo-social">
+                        <a href="https://www.linkedin.com/in/vision-x/" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/vision.x.group" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="http://wa.me/+201030276276" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم تواصل معنا -->
+    <section class="section" id="contact">
+        <div class="section-header">
+            <div class="section-title">
+                <div class="section-title-icon">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+                <h2>تواصل معنا</h2>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>هل لديك استفسار؟</h3>
+                    <p>نحن هنا لمساعدتك في أي وقت. يمكنك التواصل معنا عبر أي من القنوات التالية، وسنقوم بالرد عليك في أقرب وقت ممكن.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <div class="contact-label">رقم الهاتف</div>
+                                <div class="contact-value">
+                                    <a href="tel:+201030276276">+201030276276</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <div class="contact-label">البريد الإلكتروني</div>
+                                <div class="contact-value">
+                                    <a href="/cdn-cgi/l/email-protection#52243b213b3d3c7f2a7f35203d2722123d27263e3d3d397c2133"><span class="__cf_email__" data-cfemail="f4829d879d9b9ad98cd993869b8184b49b8180989b9b9fda8795">[email&#160;protected]</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <div class="contact-label">العنوان</div>
+                                <div class="contact-value">القاهرة الجديدة، مصر</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-social">
+                        <a href="https://www.instagram.com/vision.x.group" target="_blank" class="instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/vision-x/" target="_blank" class="linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="http://wa.me/+201030276276" target="_blank" class="whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="/cdn-cgi/l/email-protection#a2d4cbd1cbcdcc8fda8fc5d0cdd7d2e2cdd7d6cecdcdc98cd1c3" target="_blank">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h4>أرسل لنا رسالة</h4>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">الاسم</label>
+                            <input type="text" id="contactName" placeholder="أدخل اسمك الكامل" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">البريد الإلكتروني</label>
+                            <input type="email" id="contactEmail" placeholder="أدخل بريدك الإلكتروني" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">الموضوع</label>
+                            <input type="text" id="contactSubject" placeholder="موضوع الرسالة" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">الرسالة</label>
+                            <textarea id="contactMessage" placeholder="اكتب رسالتك هنا..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn">
+                            <i class="fas fa-paper-plane"></i>
+                            إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">V</div>
+                        <span>فيجن اكس جروب</span>
+                    </div>
+                    <p>وجهتك الأولى لأحدث أخبار التكنولوجيا والذكاء الاصطناعي. نقدم تغطية لحظية وموثوقة للأحداث التي تشكل مستقبلنا الرقمي.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/vision.x.group" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/vision-x/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="http://wa.me/+201030276276" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#d7a1bea4beb8b9faaffab0a5b8a2a797b8a2a3bbb8b8bcf9a4b6" target="_blank"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني">
+                        <button>اشترك</button>
+                    </div>
+                    
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:+201030276276">+201030276276</a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="/cdn-cgi/l/email-protection#1d6b746e7472733065307a6f72686d5d72686971727276336e7c"><span class="__cf_email__" data-cfemail="57213e243e38397a2f7a3025382227173822233b38383c792436">[email&#160;protected]</span></a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>القاهرة الجديدة، مصر</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>الأقسام</h3>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                        <li><a href="#">أخبار التكنولوجيا</a></li>
+                        <li><a href="#">الأسواق المالية</a></li>
+                        <li><a href="#">تحليلات الذكاء الاصطناعي</a></li>
+                        <li><a href="#">فيديو</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>الشركة</h3>
+                    <ul>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#">فريق العمل</a></li>
+                        <li><a href="#">الوظائف</a></li>
+                        <li><a href="#">الإعلانات</a></li>
+                        <li><a href="#">الشراكات</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>الدعم</h3>
+                    <ul>
+                        <li><a href="#">المساعدة</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                        <li><a href="#">إدارة الحساب</a></li>
+                        <li><a href="#">حذف البيانات</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <div class="copyright-links">
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">الشروط والأحكام</a>
+                    <a href="#">خريطة الموقع</a>
+                </div>
+                <p>© 2025 فيجن اكس جروب. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // ========================================
+        // نظام التحديث التلقائي للأخبار
+        // ========================================
+        
+        const newsCategories = [
+            { icon: 'fa-robot', name: 'تكنولوجيا' },
+            { icon: 'fa-chart-line', name: 'اقتصاد' },
+            { icon: 'fa-shield-alt', name: 'أمن سيبراني' },
+            { icon: 'fa-satellite', name: 'فضاء' },
+            { icon: 'fa-car-battery', name: 'سيارات كهربائية' },
+            { icon: 'fa-mobile-alt', name: 'أجهزة ذكية' },
+            { icon: 'fa-microchip', name: 'إلكترونيات' },
+            { icon: 'fa-cloud', name: 'سحابة' }
+        ];
+
+        const newsTemplates = {
+            'fa-robot': {
+                titles: [
+                    'ثورة جديدة في روبوتات الخدمة الذكية',
+                    'خوارزمية التعلم العميق تتجاوز التوقعات',
+                    'روبوتات صناعية ذاتية التكيف',
+                    'الذكاء الاصطناعي في الطب: قفزة نوعية',
+                    'روبوتات الزراعة تتوسع عالمياً'
+                ],
+                excerpts: [
+                    'تكنولوجيا متطورة تعدل سلوكها بناءً على البيئة المحيطة',
+                    'نتائج مذهلة في اختبارات الأداء والكفاءة',
+                    'انخفاض بنسبة 60% في تكاليف الإنتاج',
+                    'نسب نجاح أعلى بـ 40% من الأساليب التقليدية',
+                    'زيادة الإنتاجية بأكثر من 200%'
+                ]
+            },
+            'fa-chart-line': {
+                titles: [
+                    'الأسواق العالمية تسجل أرقاماً قياسية',
+                    'عملات رقمية جديدة تتألق',
+                    'استثمارات ضخمة في قطاع التقنية',
+                    'انتعاش ملحوظ في قطاع الطاقة النظيفة',
+                    'شراكات استراتيجية بين كبرى الشركات'
+                ],
+                excerpts: [
+                    'مؤشرات إيجابية تدفع المستثمرين للتفاؤل',
+                    'ارتفاع قياسي يتجاوز توقعات المحللين',
+                    'أكبر تدفق رؤوس أموال منذ عقد',
+                    'عوائد مضمونة للمستثمرين',
+                    'أسواق ناشئة تبشر بالخير'
+                ]
+            },
+            'fa-shield-alt': {
+                titles: [
+                    'ثغرة أمنية كبرى تم اكتشافها',
+                    'تحديث طارئ لجميع الأنظمة',
+                    'هجمات سيبرانية تستهدف البنية التحتية',
+                    'حماية متقدمة للبيانات السحابية',
+                    'تشفير جديد بأعلى معايير الأمان'
+                ],
+                excerpts: [
+                    'فرق الأمن تعمل على مدار الساعة',
+                    'إجراءات عاجلة لمنع الاختراقات',
+                    'تحديثات ضرورية لجميع المستخدمين',
+                    'بروتوكولات أمان جديدة',
+                    'حماية شاملة للبيانات الحساسة'
+                ]
+            },
+            'fa-satellite': {
+                titles: [
+                    'اكتشاف مذهل في أعماق الفضاء',
+                    'مركبة فضائية تصل وجهتها',
+                    'صور جديدة من تلسكوب فضائي',
+                    'مهمة استكشافية كبرى تبدأ',
+                    'قمر اصطناعي جديد ينضم للمدار'
+                ],
+                excerpts: [
+                    'بيانات غير مسبوقة تصل للأرض',
+                    'خطوة تاريخية في علم الفضاء',
+                    'اكتشافات قد تغير فهمنا للكون',
+                    'تقنيات رائدة في مجال الفضاء',
+                    'إنجاز علمي عالمي'
+                ]
+            },
+            'fa-car-battery': {
+                titles: [
+                    'ابتكار في تكنولوجيا البطاريات',
+                    'سيارة كهربائية جديدة بسعر منافس',
+                    'محطات شحن فائقة السرعة',
+                    'نطاق القيادة يتضاعف',
+                    'مستقبل النقل الكهربائي'
+                ],
+                excerpts: [
+                    'ثورة في صناعة السيارات العالمية',
+                    'انخفاض بنسبة 50% في التكاليف',
+                    'تقنية ستغير قواعد اللعبة',
+                    'حلول صديقة للبيئة',
+                    'مواصفات استثنائية'
+                ]
+            },
+            'fa-mobile-alt': {
+                titles: [
+                    'هاتف ذكي جديد بمعالج خارق',
+                    'كاميرا مذهلة في هاتف قادم',
+                    'شاشة قابلة للطي بتقنية جديدة',
+                    'تحديث رئيسي قادم',
+                    'تصميم عصري وأنيق'
+                ],
+                excerpts: [
+                    'أقوى معالج في تاريخ الهواتف',
+                    'جودة تصوير احترافية',
+                    'مرونة ومتانة استثنائية',
+                    'ميزات ذكاء اصطناعي متقدمة',
+                    'تجربة مستخدم فريدة'
+                ]
+            },
+            'fa-microchip': {
+                titles: [
+                    'شريحة جديدة بمعالج أسرع',
+                    'اختراق في تكنولوجيا أشباه الموصلات',
+                    'رقائق حوسبة كمومية',
+                    'انخفاض في أسعار المعالجات',
+                    'تعاون بين عمالقة الصناعة'
+                ],
+                excerpts: [
+                    'أداء أعلى واستهلاك أقل للطاقة',
+                    'قفزات نوعية في الأداء',
+                    'مستقبل الحوسبة',
+                    'توفر أوسع للمستهلكين',
+                    'ابتكارات ستغير السوق'
+                ]
+            },
+            'fa-cloud': {
+                titles: [
+                    'خدمات سحابية جديدة',
+                    'أمان معزز للبيانات',
+                    'توسيع مراكز البيانات',
+                    'ذكاء اصطناعي سحابي',
+                    'حلول للشركات الصغيرة'
+                ],
+                excerpts: [
+                    'سرعة أعلى وموثوقية',
+                    'حماية متقدمة',
+                    'تغطية أوسع عالمياً',
+                    'قدرات ذكاء اصطناعي',
+                    'أسعار تنافسية'
+                ]
+            }
+        };
+
+        const categoryImages = {
+            'fa-robot': [
+                'https://images.unsplash.com/photo-1676299081847-824916de030a?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1535378433864-48cf10419c5c?w=400&h=250&fit=crop'
+            ],
+            'fa-chart-line': [
+                'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop'
+            ],
+            'fa-shield-alt': [
+                'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=400&h=250&fit=crop'
+            ],
+            'fa-satellite': [
+                'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=250&fit=crop'
+            ],
+            'fa-car-battery': [
+                'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=250&fit=crop'
+            ],
+            'fa-mobile-alt': [
+                'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=250&fit=crop'
+            ],
+            'fa-microchip': [
+                'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=400&h=250&fit=crop'
+            ],
+            'fa-cloud': [
+                'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=250&fit=crop',
+                'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=250&fit=crop'
+            ]
+        };
+
+        const tickerNotification = document.getElementById('tickerNotification');
+        const updateNotification = document.getElementById('updateNotification');
+        let countdownInterval;
+        let nextUpdateSeconds = 7200;
+        let newsCounter = 100;
+
+        function startCountdown() {
+            const countdownTime = document.getElementById('countdownTime');
+            const countdownProgress = document.getElementById('countdownProgress');
+            
+            if (!countdownTime) return;
+            
+            if (countdownInterval) clearInterval(countdownInterval);
+            
+            countdownInterval = setInterval(() => {
+                nextUpdateSeconds--;
+                
+                if (nextUpdateSeconds <= 0) {
+                    nextUpdateSeconds = 7200;
+                }
+                
+                const hours = Math.floor(nextUpdateSeconds / 3600);
+                const minutes = Math.floor((nextUpdateSeconds % 3600) / 60);
+                const seconds = nextUpdateSeconds % 60;
+                
+                countdownTime.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                
+                const progress = ((7200 - nextUpdateSeconds) / 7200) * 100;
+                if (countdownProgress) {
+                    countdownProgress.style.width = progress + '%';
+                }
+            }, 1000);
+        }
+
+        function createNewsCard(category, id) {
+            const templates = newsTemplates[category.icon];
+            const title = templates.titles[Math.floor(Math.random() * templates.titles.length)];
+            const excerpt = templates.excerpts[Math.floor(Math.random() * templates.excerpts.length)];
+            const images = categoryImages[category.icon];
+            const image = images[Math.floor(Math.random() * images.length)];
+            
+            const card = document.createElement('article');
+            card.className = 'news-card';
+            card.setAttribute('data-article', id);
+            card.style.animation = 'fadeInUp 0.5s ease forwards';
+            
+            card.innerHTML = `
+                <div class="card-image-wrapper">
+                    <img src="${image}" alt="${title}" class="card-img" loading="lazy" style="opacity: 0; transition: opacity 0.5s ease;">
+                    <div class="card-image-overlay"></div>
+                    <div class="card-actions-overlay">
+                        <button class="overlay-btn bookmark-btn" data-article="${id}">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                        <button class="overlay-btn share-trigger" data-article="${id}">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                    <span class="new-badge">جديد</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="category">
+                            <i class="fas ${category.icon}"></i>
+                            ${category.name}
+                        </span>
+                        <span class="card-date">الآن</span>
+                    </div>
+                    <h3 class="card-title">${title}</h3>
+                    <p class="card-excerpt">${excerpt}</p>
+                    <div class="card-footer">
+                        <div class="ai-score">
+                            <span>🧠</span> مصداقية AI: ${Math.floor(Math.random() * 15) + 85}%
+                        </div>
+                        <div class="card-share">
+                            <button class="share-btn twitter-share" data-article="${id}">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="share-btn facebook-share" data-article="${id}">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function addNewNews(count = 3) {
+            const newsGrid = document.getElementById('newsGrid');
+            if (!newsGrid) return;
+            
+            updateNotification.classList.add('active');
+            
+            setTimeout(() => {
+                for (let i = 0; i < count; i++) {
+                    newsCounter++;
+                    const randomCategory = newsCategories[Math.floor(Math.random() * newsCategories.length)];
+                    const newCard = createNewsCard(randomCategory, newsCounter);
+                    newsGrid.insertBefore(newCard, newsGrid.firstChild);
+                    
+                    const img = newCard.querySelector('.card-img');
+                    setTimeout(() => {
+                        img.style.opacity = '1';
+                    }, 100);
+                }
+                
+                setTimeout(() => {
+                    updateNotification.classList.remove('active');
+                    tickerNotification.querySelector('.new-count').textContent = count;
+                    tickerNotification.classList.add('active');
+                    nextUpdateSeconds = 7200;
+                }, 500);
+                
+                reattachEventListeners();
+                
+                const allCards = newsGrid.querySelectorAll('.news-card');
+                if (allCards.length > 6) {
+                    for (let i = 6; i < allCards.length; i++) {
+                        allCards[i].remove();
+                    }
+                }
+            }, 1500);
+        }
+
+        function reattachEventListeners() {
+            document.querySelectorAll('.bookmark-btn').forEach(btn => {
+                btn.onclick = null;
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    btn.classList.toggle('saved');
+                    const icon = btn.querySelector('i');
+                    if (btn.classList.contains('saved')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        icon.classList.add('fa-check');
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.remove('fa-check');
+                        icon.classList.add('far');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.share-trigger').forEach(trigger => {
+                trigger.onclick = null;
+                trigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const articleId = trigger.dataset.article;
+                    const shareUrl = window.location.href + '#article-' + articleId;
+                    shareLinkInput.value = shareUrl;
+                    shareModal.classList.add('active');
+                });
+            });
+
+            document.querySelectorAll('.twitter-share').forEach(btn => {
+                btn.onclick = null;
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const articleId = btn.dataset.article;
+                    const article = document.querySelector(`.news-card[data-article="${articleId}"]`);
+                    const title = article ? article.querySelector('.card-title').textContent : '';
+                    const url = encodeURIComponent(window.location.href + '#article-' + articleId);
+                    const text = encodeURIComponent(title);
+                    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+                });
+            });
+
+            document.querySelectorAll('.facebook-share').forEach(btn => {
+                btn.onclick = null;
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const url = encodeURIComponent(window.location.href);
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+                });
+            });
+        }
+
+        document.getElementById('viewNewNews')?.addEventListener('click', () => {
+            tickerNotification.classList.remove('active');
+            const firstNewCard = document.querySelector('.news-grid .news-card');
+            if (firstNewCard) {
+                firstNewCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstNewCard.style.animation = 'none';
+                firstNewCard.offsetHeight;
+                firstNewCard.style.animation = 'fadeInUp 0.5s ease forwards, pulse 2s infinite';
+            }
+        });
+
+        document.getElementById('closeNotification')?.addEventListener('click', () => {
+            tickerNotification.classList.remove('active');
+        });
+
+        // ========================================
+        // القائمة المنقولة للجوال
+        // ========================================
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn?.addEventListener('click', openMobileMenu);
+        mobileMenuClose?.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay?.addEventListener('click', closeMobileMenu);
+
+        // ========================================
+        // رأس الصفحة
+        // ========================================
+        const mainHeader = document.getElementById('mainHeader');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainHeader?.classList.add('scrolled');
+            } else {
+                mainHeader?.classList.remove('scrolled');
+            }
+        });
+
+        // ========================================
+        // نظام المشاركة
+        // ========================================
+        const shareModal = document.getElementById('shareModal');
+        const shareModalClose = document.getElementById('shareModalClose');
+        const shareLinkInput = document.getElementById('shareLinkInput');
+        const copyShareLinkBtn = document.getElementById('copyShareLink');
+        const shareTriggers = document.querySelectorAll('.share-trigger');
+
+        shareTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const articleId = trigger.dataset.article;
+                const shareUrl = window.location.href + '#article-' + articleId;
+                shareLinkInput.value = shareUrl;
+                shareModal.classList.add('active');
+            });
+        });
+
+        shareModalClose?.addEventListener('click', () => {
+            shareModal.classList.remove('active');
+        });
+
+        shareModal?.addEventListener('click', (e) => {
+            if (e.target === shareModal) {
+                shareModal.classList.remove('active');
+            }
+        });
+
+        copyShareLinkBtn?.addEventListener('click', () => {
+            shareLinkInput.select();
+            document.execCommand('copy');
+            copyShareLinkBtn.textContent = 'تم النسخ!';
+            copyShareLinkBtn.classList.add('copied');
+            
+            setTimeout(() => {
+                copyShareLinkBtn.textContent = 'نسخ';
+                copyShareLinkBtn.classList.remove('copied');
+            }, 2000);
+        });
+
+        // ========================================
+        // نموذج التواصل
+        // ========================================
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = contactForm.querySelector('.btn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i> تم إرسال الرسالة بنجاح';
+                    btn.style.background = 'var(--success)';
+                    contactForm.reset();
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = '';
+                        btn.disabled = false;
+                    }, 3000);
+                }, 2000);
+            });
+        }
+
+        // ========================================
+        // التهيئة النهائية
+        // ========================================
+        
+        startCountdown();
+        
+        const autoUpdateInterval = setInterval(() => {
+            addNewNews(Math.floor(Math.random() * 3) + 2);
+        }, 7200000);
+        
+        console.log('🔄 نظام التحديث التلقائي للأخبار مُفعّل');
+        console.log('⏰ التحديث كل: ساعتين (7200 ثانية)');
+        console.log('📰 عدد الأخبار المُضافة تلقائياً: 2-4 أخبار');
+        
+        window.manualUpdate = function() {
+            console.log('🔄 جاري تحديث الأخبار يدوياً...');
+            addNewNews(Math.floor(Math.random() * 3) + 2);
+        };
+        
+        window.setUpdateInterval = function(hours) {
+            clearInterval(autoUpdateInterval);
+            const ms = hours * 3600000;
+            console.log(`⏰ تم تغيير وقت التحديث إلى: ${hours} ساعة`);
+            nextUpdateSeconds = hours * 3600;
+            
+            const newInterval = setInterval(() => {
+                addNewNews(Math.floor(Math.random() * 3) + 2);
+            }, ms);
+        };
+        
+        // ========================================
+        // لوحة المفاتيح والإضافات
+        // ========================================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                mobileMenu?.classList.contains('active') && closeMobileMenu();
+                shareModal?.classList.contains('active') && shareModal.classList.remove('active');
+                tickerNotification?.classList.contains('active') && tickerNotification.classList.remove('active');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.news-card, .featured-sidebar-item, .event-item, .about-section, .contact-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
